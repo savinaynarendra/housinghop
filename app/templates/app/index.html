@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <p>Overall HOP!!</p>
+    {% for collection in returnedData %}
+        <p>{{collection}}</p>
+    {% endfor %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div  class="input-group date" style="width:200px;">
+                    <input id="dateBox" type="text" class="form-control" />
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="chart"></div>
+            </div>
+            <div class="col-md-6">
+                <div id="donutChart"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
