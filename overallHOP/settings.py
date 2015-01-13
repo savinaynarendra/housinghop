@@ -108,6 +108,12 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = 'postmaster@sandbox2826c389fd6542c48cc3c760160ada91.mailgun.org'
+EMAIL_HOST_PASSWORD = 'bb1be04e72f0ac1b0ab51c3b88fb3880'
+EMAIL_PORT = 587
+
 # STATIC_URL = '/static/'
 
 # STATIC_ROOT = '/home/dev/svinay/overallHOP/overallHOP/static'

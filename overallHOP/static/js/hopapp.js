@@ -1,5 +1,6 @@
 $(function(){
     var donutChart = c3.generate({
+        bindto: '#donutChart',
         data: {
             columns: [
                 ['data3', 30],
@@ -25,16 +26,17 @@ $(function(){
         });
     }, 1500);
 
-    setTimeout(function () {
-        donutChart.unload({
-            ids: 'data3'
-        });
-        donutChart.unload({
-            ids: 'data4'
-        });
-    }, 2500);
+    // setTimeout(function () {
+    //     donutChart.unload({
+    //         ids: 'data3'
+    //     });
+    //     donutChart.unload({
+    //         ids: 'data4'
+    //     });
+    // }, 2500);
 
     var chart = c3.generate({
+        bindto: '#chart',
         data: {
             columns: [
                 ['data1', 30, 200, 100, 400, 150, 250],
@@ -43,37 +45,32 @@ $(function(){
         }
     });
 
-    setTimeout(function () {
-        chart.load({
-            columns: [
-                ['data1', 230, 190, 300, 500, 300, 400]
-            ]
-        });
-    }, 1000);
+    // setTimeout(function () {
+    //     chart.load({
+    //         columns: [
+    //             ['data1', 230, 190, 300, 500, 300, 400]
+    //         ]
+    //     });
+    // }, 1000);
 
-    setTimeout(function () {
-        chart.load({
-            columns: [
-                ['data3', 130, 150, 200, 300, 200, 100]
-            ]
-        });
-    }, 1500);
+    // setTimeout(function () {
+    //     chart.load({
+    //         columns: [
+    //             ['data2', 130, 150, 200, 300, 200, 100]
+    //         ]
+    //     });
+    // }, 1500);
 
-    setTimeout(function () {
-        chart.unload({
-            ids: 'data1'
-        });
-    }, 2000);
-
-
+    // setTimeout(function () {
+    //     chart.unload({
+    //         ids: 'data1'
+    //     });
+    // }, 2000);
 
 
+
+    $('#dp3').datepicker();
+    $('#dp5').datepicker();
 });
 
-$(function(){$('#dateBox').datepicker({
-    format: "mm/dd/yy",
-    autoclose: true,
-    todayHighlight: true
-    });
-});
 
