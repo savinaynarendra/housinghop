@@ -4,4 +4,5 @@ from app import views
 
 urlpatterns = patterns('',
     url(r'^$', views.bar, name='bar'),
+    url(r'^sendemail/$', views.sendemail, name='sendemail')
 )

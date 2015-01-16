@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-<!-- {% for collection in returnedData %}
-        <p>{{collection}}</p>
-{% endfor %} -->
 <div class="container">
     <div class="row">
+        <div>
+            {% for x in data %}
+                <p>{{x}}</p>
+            {% endfor %}
+        </div>
         <div class="col-md-3">
             <div class="btn-group" role="group" aria-label="...">
                 <button type="button" class="btn btn-default">Trend</button>
@@ -22,11 +24,11 @@
                             <h4 class="modal-title" id="myModalLabel">Post your Data request</h4>
                         </div>
                         <div class="modal-body">
-                            <textarea class="form-control" style="height: 150px;"></textarea>
+                            <textarea class="form-control" style="height: 150px;" id="request"></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary">Submit Request</button>
+                            <button type="submit" class="btn btn-primary" id="submit-request">Submit Request</button>
                         </div>
                     </div>
                 </div>
@@ -36,14 +38,14 @@
     <br>
     <div class="row">
         <div class="col-md-4">
-            <div class="input-append date"  data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-                <input class="span2 datepicker form-control" size="16" type="text" value="12-02-2012" id="dp3">
+            <div class="input-append date" data-date-format="dd-mm-yyyy">
+                <input class="span2 datepicker form-control" size="16" type="text" id="dp3">
                 <span class="add-on"><i class="icon-th"></i></span>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="input-append date"  data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-                <input class="span2 datepicker form-control" size="16" type="text" value="12-02-2012" id="dp5">
+            <div class="input-append date" data-date-format="dd-mm-yyyy">
+                <input class="span2 datepicker form-control" size="16" type="text" id="dp5">
                 <span class="add-on"><i class="icon-th"></i></span>
             </div>
         </div>
@@ -59,7 +61,7 @@
     </div>
     <br>
     <div class="row">
-        <div class="btn-group" role="group" aria-label="...">
+        <div class="btn-group col-md-8" role="group" aria-label="...">
             <button type="button" class="btn btn-default">All</button>
             <button type="button" class="btn btn-default">Rent</button>
             <button type="button" class="btn btn-default">Buy</button>
@@ -69,6 +71,9 @@
             <button type="button" class="btn btn-default">Land</button>
             <button type="button" class="btn btn-default">Plot Projects</button>
             <button type="button" class="btn btn-default">Serviced Apartments</button>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary" id="show-query">Run</button>
         </div>
     </div>
     <br>

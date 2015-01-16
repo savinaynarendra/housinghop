@@ -1,4 +1,21 @@
-$(function(){
+$(function() {
+    $('#submit-request').click(function(event) {
+        console.log("inside submit request");
+        event.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/app/sendemail/",
+            data: {
+                'message': $('#request').val()
+            },
+            success: function() {
+                console.log("Success");
+            },
+            error: function(err) {
+                console.log("error: ", err);
+            }
+        })
+    });
     var donutChart = c3.generate({
         bindto: '#donutChart',
         data: {
@@ -6,17 +23,22 @@ $(function(){
                 ['data3', 30],
                 ['data4', 120],
             ],
-            type : 'donut',
-            onclick: function (d, i) { console.log("onclick", d, i); },
-            onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-            onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+            type: 'donut',
+            onclick: function(d, i) {
+                console.log("onclick", d, i);
+            },
+            onmouseover: function(d, i) {
+                console.log("onmouseover", d, i);
+            },
+            onmouseout: function(d, i) {
+                console.log("onmouseout", d, i);
+            }
         },
         donut: {
             title: "Iris Petal Width"
         }
     });
-
-    setTimeout(function () {
+    setTimeout(function() {
         donutChart.load({
             columns: [
                 ["setosa", 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.2, 0.1, 0.1, 0.2, 0.4, 0.4, 0.3, 0.3, 0.3, 0.2, 0.4, 0.2, 0.5, 0.2, 0.2, 0.4, 0.2, 0.2, 0.2, 0.2, 0.4, 0.1, 0.2, 0.2, 0.2, 0.2, 0.1, 0.2, 0.2, 0.3, 0.3, 0.2, 0.6, 0.4, 0.3, 0.2, 0.2, 0.2, 0.2],
@@ -25,7 +47,6 @@ $(function(){
             ]
         });
     }, 1500);
-
     // setTimeout(function () {
     //     donutChart.unload({
     //         ids: 'data3'
@@ -34,7 +55,6 @@ $(function(){
     //         ids: 'data4'
     //     });
     // }, 2500);
-
     var chart = c3.generate({
         bindto: '#chart',
         data: {
@@ -44,7 +64,6 @@ $(function(){
             ]
         }
     });
-
     // setTimeout(function () {
     //     chart.load({
     //         columns: [
@@ -52,7 +71,6 @@ $(function(){
     //         ]
     //     });
     // }, 1000);
-
     // setTimeout(function () {
     //     chart.load({
     //         columns: [
@@ -60,17 +78,50 @@ $(function(){
     //         ]
     //     });
     // }, 1500);
-
     // setTimeout(function () {
     //     chart.unload({
     //         ids: 'data1'
     //     });
     // }, 2000);
+    // $("#dp3").datepicker().on('show', function(ev) {
+    //     var today = new Date();
+    //     var t = today.getDate() + "-" + today.getMonth() + "-" + today.getFullYear();
+    //     $('#dp3').data({
+    //         date: t
+    //     }).datepicker('update');
+    // });
 
-
-
+    var today = new Date();
+    today = today.getDate() + '/' + (today.getMonth() + 1) + '/' +  today.getFullYear()
+    console.log(today);
     $('#dp3').datepicker();
+
+    // $('#dp3').datepicker({
+    //     'setDate': new Date()
+    // });
     $('#dp5').datepicker();
+
+    $('#show-query').on('click', function() {
+        var fromDate = $('#dp3').val();
+        var toDate = $('#dp5').val();
+        console.log(fromDate, toDate);
+        $.ajax({
+            type: "POST",
+            url: "/app/",
+            data: {
+                'fromDate': fromDate,
+                'toDate': toDate
+            },
+            success: function(data) {
+                console.log("Success in getting active users: ", data);
+                
+                
+            },
+            error: function(err) {
+                console.log("error: ", err);
+            }
+        })
+
+    })
+
 });
-
-
