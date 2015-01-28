@@ -30,7 +30,7 @@ def bar(request):
         fromdate_day = fromdate_array[1]
         fromdate_year = fromdate_array[2]
         print int(fromdate_year)
-        y = datetime.datetime(int(fromdate_year), int(fromdate_month), int(fromdate_day))
+        y = datetime.datetime(int(fromdate_year), int(fromdate_month), int(fromdate_day)-1)
         t = datetime.datetime(int(todate_year), int(todate_month), int(todate_day))
         print y,t
         ts_y =  int(time.mktime(y.timetuple())*1000)
@@ -40,12 +40,18 @@ def bar(request):
         yutcoid = ObjectId.from_datetime(yutcd)
         tutcoid = ObjectId.from_datetime(tutcd)
         print yutcoid, tutcoid
-        data=[]
-        collection = db.properData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}},{"_id":0, "timeStamp": 0})
+        data={}
+        data['activeusers'] = []
+        data['conversion'] = []
+        collection_active_users = db.overallHOP.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Active_Users'},{"_id":0, "timeStamp": 0})
+        collection_conversion = db.overallHOP.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Conversion'},{"_id":0, "timeStamp": 0})
         # print strftime("%Y%m%d", y), strftime("%Y%m%d", t)
-        for obj in collection:
+        print collection_conversion, collection_active_users
+        for obj in collection_active_users:
             print obj
-            data+=[obj]
+            data['activeusers']+=[obj]
+        for obj in collection_conversion:
+            data['conversion']+=[obj]
         print data
         return HttpResponse(json.dumps(data), content_type="application/json")
 
