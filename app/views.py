@@ -43,15 +43,19 @@ def bar(request):
         data={}
         data['activeusers'] = []
         data['conversion'] = []
-        collection_active_users = db.overallHOP.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Active_Users'},{"_id":0, "timeStamp": 0})
-        collection_conversion = db.overallHOP.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Conversion'},{"_id":0, "timeStamp": 0})
+        data['contact_requests'] = []
+        collection_active_users = db.properData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Active_Users'},{"_id":0, "timeStamp": 0})
+        collection_conversion = db.properData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Conversion'},{"_id":0, "timeStamp": 0})
+        collection_contact_requests = db.properData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Contact Requests'},{"_id":0, "timeStamp": 0})
         # print strftime("%Y%m%d", y), strftime("%Y%m%d", t)
-        print collection_conversion, collection_active_users
+        print collection_conversion, collection_active_users, collection_contact_requests
         for obj in collection_active_users:
             print obj
             data['activeusers']+=[obj]
         for obj in collection_conversion:
             data['conversion']+=[obj]
+        for obj in collection_contact_requests:
+            data['contact_requests']+=[obj]
         print data
         return HttpResponse(json.dumps(data), content_type="application/json")
 
