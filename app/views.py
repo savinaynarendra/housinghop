@@ -16,7 +16,7 @@ def bar(request):
     # collection = []
     db = client['vasu']
     if request.POST:
-        print request.POST
+        # print request.POST
         todate = request.POST['toDate']
         fromdate = request.POST['fromDate']
         # print todate.encode('utf-8'), fromdate.encode('utf-8'), type(todate.encode('utf-8'))
