@@ -29,9 +29,10 @@ def bar(request):
         fromdate_month = fromdate_array[0]
         fromdate_day = fromdate_array[1]
         fromdate_year = fromdate_array[2]
-        print int(fromdate_year)
+        # print int(fromdate_year)
         y = datetime.datetime(int(fromdate_year), int(fromdate_month), int(fromdate_day)-1)
-        t = datetime.datetime(int(todate_year), int(todate_month), int(todate_day))
+        t = datetime.datetime(int(todate_year), int(todate_month), int(todate_day)+1)
+        print "dates are:"
         print y,t
         ts_y =  int(time.mktime(y.timetuple())*1000)
         ts_t = int(time.mktime(t.timetuple())*1000)
@@ -45,10 +46,14 @@ def bar(request):
         data['conversion'] = []
         data['contact_requests'] = []
         data['user_engagement'] = []
+        data['registered_users'] = []
+        data['live_listings'] = []
         collection_active_users = db.testData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Active_Users'},{"_id":0, "timeStamp": 0})
         collection_conversion = db.testData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Conversion'},{"_id":0, "timeStamp": 0})
         collection_contact_requests = db.testData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Contact Requests'},{"_id":0, "timeStamp": 0})
         collection_user_engagement = db.testData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'User Engagement'},{"_id":0, "timeStamp": 0})
+        collection_registered_users = db.testData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Registered Users'},{"_id":0, "timeStamp": 0})
+        collection_live_listings = db.testData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Live Listings'},{"_id":0, "timeStamp": 0})
         # print strftime("%Y%m%d", y), strftime("%Y%m%d", t)
         print collection_conversion, collection_active_users, collection_contact_requests, collection_user_engagement
         for obj in collection_active_users:
@@ -60,6 +65,10 @@ def bar(request):
             data['contact_requests']+=[obj]
         for obj in collection_user_engagement:
             data['user_engagement']+=[obj]
+        for obj in collection_registered_users:
+            data['registered_users']+=[obj]
+        for obj in collection_live_listings:
+            data['live_listings']+=[obj]
         print data
         return HttpResponse(json.dumps(data), content_type="application/json")
 
@@ -71,9 +80,10 @@ def sendemail(request):
     print request.POST
     print "Received request"
     msg = request.POST['message']
-    print msg
+    from_email = request.POST['from_email']
+    print msg, from_email
     # send_mail('Data request', msg, 'hopapp@housing.com', ['rakesh.raman@housing.com', 'savinay.narendra@housing.com', 'deepak.singh@housing.com', 'rahul.khanna@housing.com', 'vasu395@gmail.com', 'somya.mishra@housing.com'], fail_silently=False)
-    send_mail('Data request', msg, 'hopapp@housing.com', ['savinay.narendra@housing.com'], fail_silently=False)
+    send_mail('Data request', msg, from_email, ['savinay.narendra@housing.com'], fail_silently=False)
     return render_to_response("app/index.html", {"returnedData" : "1"})
 
 # Create your views here.
