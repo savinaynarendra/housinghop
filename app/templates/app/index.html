@@ -4,15 +4,12 @@
     <div class="row">
         <div>
             {% for x in data %}
-                <p>{{x}}</p>
+            <p>{{x}}</p>
             {% endfor %}
         </div>
-        <div class="col-md-3">
-            <div class="btn-group" role="group" aria-label="...">
-                <!-- <button type="button" class="btn btn-default">Trend</button>
-                <button type="button" class="btn btn-default">Cities</button>
-                <button type="button" class="btn btn-default">Metrics</button> -->
-            </div>
+        <div class="alert alert-danger" role="alert" style="display: none;" id="error"><span id="addError"></span> cannot be empty</div>
+        <div class="col-md-4">
+            <h2>Health of the Product</h2>
         </div>
         <div class="pull-right">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Post your Question / Data Request</button>
@@ -38,95 +35,154 @@
         </div>
     </div>
     <br>
+    <br>
     <div class="row">
-        <div class="col-md-4">
-            <div class="input-append date" data-date-format="dd-mm-yyyy">
-                <input class="span2 datepicker form-control" size="16" type="text" id="dp3">
-                <span class="add-on"><i class="icon-th"></i></span>
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="input-append date" data-date-format="dd-mm-yyyy">
+                            <input class="span2 datepicker form-control" size="16" type="text" id="dp3" placeholder="Select From Date">
+                            <span class="add-on"><i class="icon-th"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="input-append date" data-date-format="dd-mm-yyyy">
+                            <input class="span2 datepicker form-control" size="16" type="text" id="dp5" placeholder="Select To Date">
+                            <span class="add-on"><i class="icon-th"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-md-push-1">
+                        <!-- div class="col-md-3">
+                            <span>Select Platform</span>
+                        </div> -->
+                        <div class="btn-group" role="group" aria-label="...">
+                            <!-- <button type="button" class="btn btn-default platformsBtnGroup" id="all">All</button> -->
+                            <button type="button" class="btn btn-default platformsBtnGroup" id="desktop">Desktop</button>
+                            <button type="button" class="btn btn-default platformsBtnGroup" id="mobile">Mobile Web</button>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-md-push-1" style="margin-left: 140px;">
+                        <div class="btn-group" role="group" aria-label="..." >
+                            <button type="button" class="btn btn-default servicesBtnGroup" id="all">All</button>
+                            <button type="button" class="btn btn-default servicesBtnGroup" id="rent">Rent</button>
+                            <button type="button" class="btn btn-default servicesBtnGroup" id="buy">Buy</button>
+                            <button type="button" class="btn btn-default servicesBtnGroup" id="pg">PG</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-md-3" style="margin-left: 30px;">
+                        <button class="btn btn-primary glyphicon glyphicon-play-circle" id="show-query"> Run</button>
+                    </div>
+                    <!-- <div class="col-md-2 pull-right" style="margin-right: 56px;">
+                        
+                        <button class="btn btn-danger reset">Reset Filters</button>
+                    </div> -->
+                </div>
+
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="input-append date" data-date-format="dd-mm-yyyy">
-                <input class="span2 datepicker form-control" size="16" type="text" id="dp5">
-                <span class="add-on"><i class="icon-th"></i></span>
-            </div>
-        </div>
-        <div class="col-md-4 pull-right">
-            <div class="btn-group" role="group" aria-label="...">
-                <button type="button" class="btn btn-default">All</button>
-                <button type="button" class="btn btn-default">Web</button>
-                <button type="button" class="btn btn-default">Mobile Web</button>
-                <button type="button" class="btn btn-default">Android</button>
-                <button type="button" class="btn btn-default">iOS</button>
-            </div>
+        <div class="col-md-3 col-md-offset-1 pull-right">
         </div>
     </div>
     <br>
-    <div class="row">
-        <div class="btn-group col-md-8" role="group" aria-label="...">
-            <button type="button" class="btn btn-default">All</button>
-            <button type="button" class="btn btn-default">Rent</button>
-            <button type="button" class="btn btn-default">Buy</button>
-            <button type="button" class="btn btn-default">PG</button>
-            <button type="button" class="btn btn-default">New Projects</button>
-            <button type="button" class="btn btn-default">Home Loans</button>
-            <button type="button" class="btn btn-default">Land</button>
-            <button type="button" class="btn btn-default">Plot Projects</button>
-            <button type="button" class="btn btn-default">Serviced Apartments</button>
+    <!-- <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">Apply Filters</div>
+            <div class="panel-body">
+                <div class="col-md-6">
+                    <div class="col-md-3">
+                        <span>Select Service</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-2">
-            <button class="btn btn-primary" id="show-query">Run</button>
+    </div> -->
+    <br>
+    <div class="row">
+        <div class="text-center">
         </div>
     </div>
     <br>
     <br>
-    <div class="text-center">
-        <button class="btn btn-lg btn-danger reset">Reset Filters</button>
+    <div class="col-md-2">
+    </div>
+    <br>
+    <br>
+    <div id="allData" style="display:none">
+        <div class="row">
+            <h2>
+                Unique Users
+                <span id="channelActive"></span>
+            </h2>
+            <br>
+            <div class="col-md-6">
+                <div id="chart"></div>
+            </div>
+            <div class="col-md-5">
+                <div id="donutChart" class="donutChart"></div>
+            </div>
+            <div class="col-md-1" style="margin-top: 120px;">
+                <button class="btn btn-danger resetUniqueUsers">All Channels</button>
+            </div>
+        </div>
+        <div class="row">
+            <h2>
+                OCRF Conversion
+                <span id="channelConversion"></span>
+            </h2>
+            <br>
+            <div class="col-md-6">
+                <div id="chartConversion"></div>
+            </div>
+            <div class="col-md-5">
+                <div id="donutChartConversion" class="donutChartConversion"></div>
+            </div>
+            <div class="col-md-1" style="margin-top: 120px;">
+                <button class="btn btn-danger resetConversion">All Channels</button>
+            </div>
+        </div>
+        <div class="row">
+            <h2>
+                Total OCRF
+                <span id="channelContactRequests"></span>
+            </h2>
+            <br>
+            <div class="col-md-6">
+                <div id="chartContactRequests"></div>
+            </div>
+            <div class="col-md-5">
+                <div id="donutChartContactRequests" class="donutChartContactRequests"></div>
+            </div>
+            <div class="col-md-1" style="margin-top: 120px;">
+                <button class="btn btn-danger resetContactRequests">All Channels</button>
+            </div>
+        </div>
+        <div class="row">
+            <h2>
+                User Engagement
+                <span id="channelUserEngagement"></span>
+            </h2>
+            <br>
+            <div class="col-md-6">
+                <div id="chartUserEngagement"></div>
+            </div>
+            <div class="col-md-5">
+                <div id="donutChartUserEngagement" class="donutChartUserEngagement"></div>
+            </div>
+            <div class="col-md-1" style="margin-top: 120px;">
+                <button class="btn btn-danger resetUserEngagement">All Channels</button>
+            </div>
+        </div>
+        
     </div>
 
-    <br>
-    <div class="row">
-        <h2>Active Users</h2>
-        <br>
-        <div class="col-md-6">
-            <div id="chart"></div>
-        </div>
-        <div class="col-md-6">
-            <div id="donutChart" class="donutChart"></div>
-        </div>
-    </div>
-    <div class="row">
-        <h2>Conversion</h2>
-        <br>
-        <div class="col-md-6">
-            <div id="chartConversion"></div>
-        </div>
-        <div class="col-md-6">
-            <div id="donutChartConversion" class="donutChartConversion"></div>
-        </div>
-    </div>
-
-    <div class="row">
-        <h2>Contact Requests</h2>
-        <br>
-        <div class="col-md-6">
-            <div id="chartContactRequests"></div>
-        </div>
-        <div class="col-md-6">
-            <div id="donutChartContactRequests" class="donutChartContactRequests"></div>
-        </div>
-    </div>
-    <div class="row">
-        <h2>User Engagement</h2>
-        <br>
-        <div class="col-md-6">
-            <div id="chartUserEngagement"></div>
-        </div>
-        <div class="col-md-6">
-            <div id="donutChartUserEngagement" class="donutChartUserEngagement"></div>
-        </div>
-    </div>
-    <div class="row">
+    <!-- <div class="row">
         <h2>Registered Users</h2>
         <br>
         <div class="col-md-6">
@@ -145,7 +201,6 @@
         <div class="col-md-6">
             <div id="donutChartLiveListings" class="donutChartLiveListings"></div>
         </div>
-    </div>
-
+    </div> -->
 </div>
 {% endblock %}

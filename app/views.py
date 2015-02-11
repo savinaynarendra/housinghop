@@ -19,10 +19,12 @@ def bar(request):
         # print request.POST
         todate = request.POST['toDate']
         fromdate = request.POST['fromDate']
+        service = request.POST['service']
+        platform = request.POST['platform']
         # print todate.encode('utf-8'), fromdate.encode('utf-8'), type(todate.encode('utf-8'))
         todate_array = todate.encode('utf-8').split("/")
         fromdate_array = fromdate.encode('utf-8').split("/")
-        # print todate_array, fromdate_array
+        print todate_array, fromdate_array
         todate_month = todate_array[0]
         todate_day = todate_array[1]
         todate_year = todate_array[2]
@@ -40,20 +42,21 @@ def bar(request):
         tutcd = datetime.datetime.utcfromtimestamp(ts_t/1000)
         yutcoid = ObjectId.from_datetime(yutcd)
         tutcoid = ObjectId.from_datetime(tutcd)
-        print yutcoid, tutcoid
+        print yutcoid, tutcoid, service, platform
+        print ''
         data={}
         data['activeusers'] = []
         data['conversion'] = []
         data['contact_requests'] = []
         data['user_engagement'] = []
-        data['registered_users'] = []
-        data['live_listings'] = []
-        collection_active_users = db.testData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Active_Users'},{"_id":0, "timeStamp": 0})
-        collection_conversion = db.testData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Conversion'},{"_id":0, "timeStamp": 0})
-        collection_contact_requests = db.testData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Contact Requests'},{"_id":0, "timeStamp": 0})
-        collection_user_engagement = db.testData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'User Engagement'},{"_id":0, "timeStamp": 0})
-        collection_registered_users = db.testData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Registered Users'},{"_id":0, "timeStamp": 0})
-        collection_live_listings = db.testData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Live Listings'},{"_id":0, "timeStamp": 0})
+        # data['registered_users'] = []
+        # data['live_listings'] = []
+        collection_active_users = db.overallHOP.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Active_Users', 'service': service, 'device': platform},{"_id":0, "timeStamp": 0})
+        collection_conversion = db.overallHOP.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Conversion', 'service': service, 'device': platform},{"_id":0, "timeStamp": 0})
+        collection_contact_requests = db.overallHOP.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Contact Requests', 'service': service, 'device': platform},{"_id":0, "timeStamp": 0})
+        collection_user_engagement = db.overallHOP.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'User Engagement', 'service': service, 'device': platform},{"_id":0, "timeStamp": 0})
+        # collection_registered_users = db.testData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Registered Users', 'service': service, 'device': platform},{"_id":0, "timeStamp": 0})
+        # collection_live_listings = db.testData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Live Listings', 'service': service, 'device': platform},{"_id":0, "timeStamp": 0})
         # print strftime("%Y%m%d", y), strftime("%Y%m%d", t)
         print collection_conversion, collection_active_users, collection_contact_requests, collection_user_engagement
         for obj in collection_active_users:
@@ -65,10 +68,10 @@ def bar(request):
             data['contact_requests']+=[obj]
         for obj in collection_user_engagement:
             data['user_engagement']+=[obj]
-        for obj in collection_registered_users:
-            data['registered_users']+=[obj]
-        for obj in collection_live_listings:
-            data['live_listings']+=[obj]
+        # for obj in collection_registered_users:
+        #     data['registered_users']+=[obj]
+        # for obj in collection_live_listings:
+        #     data['live_listings']+=[obj]
         print data
         return HttpResponse(json.dumps(data), content_type="application/json")
 
