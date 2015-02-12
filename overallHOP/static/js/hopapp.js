@@ -2527,12 +2527,11 @@ $(function() {
         console.log(id);
     })
 
-    var start = new Date('2015, 02, 03');
+    var start = new Date(2015, 02, 03);
     var today = new Date();
 
     $('#dp3').datepicker({
-        startDate: start,
-        endDate: new Date()
+        minDate: start
     });
     $('#dp5').datepicker();
     $('#show-query').on('click', function() {
