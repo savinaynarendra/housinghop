@@ -1,4 +1,7 @@
 $(function() {
+    
+    $('#questionMark').tooltip();
+    
     $('#submit-request').click(function(event) {
         console.log("inside submit request");
         event.preventDefault();
@@ -460,7 +463,7 @@ $(function() {
             console.log(data.conversion[i].num_users);
             num = parseInt(data.conversion[i].num_users, 10);
             perc = num / parseInt(data.activeusers[i].num_users, 10)
-            percentage = Math.ceil(perc * 100)/100;
+            percentage = Math.round(perc * 10000)/10000;
             num_users_array.push(percentage * 100);
         };
         var chartConversion = c3.generate({
@@ -514,7 +517,7 @@ $(function() {
             // console.log(data[i].channels.direct);
             num = parseInt(data.conversion[i].channels.direct, 10);
             perc = num / parseInt(data.activeusers[i].channels.direct, 10)
-            percentage = Math.ceil(perc * 100)/100;
+            percentage = Math.round(perc * 10000)/10000;
             num_users_array.push(percentage * 100);
         };
         console.log(num_users_array);
@@ -569,7 +572,7 @@ $(function() {
             // console.log(data[i].channels.affiliate);
             num = parseInt(data.conversion[i].channels.affiliate, 10);
             perc = num / parseInt(data.activeusers[i].channels.affiliate, 10)
-            percentage = Math.ceil(perc * 100)/100;
+            percentage = Math.round(perc * 10000)/10000;
             num_users_array.push(percentage * 100);
         };
         console.log(num_users_array);
@@ -624,7 +627,7 @@ $(function() {
             // console.log(data[i].channels.email);
             num = parseInt(data.conversion[i].channels.email, 10);
             perc = num / parseInt(data.activeusers[i].channels.email, 10)
-            percentage = Math.ceil(perc * 100)/100;
+            percentage = Math.round(perc * 10000)/10000;
             num_users_array.push(percentage * 100);
         };
         console.log(num_users_array);
@@ -679,7 +682,7 @@ $(function() {
             // console.log(data[i].channels.organic);
             num = parseInt(data.conversion[i].channels.organic, 10);
             perc = num / parseInt(data.activeusers[i].channels.organic, 10)
-            percentage = Math.ceil(perc * 100)/100;
+            percentage = Math.round(perc * 10000)/10000;
             num_users_array.push(percentage * 100);
         };
         console.log(num_users_array);
@@ -734,7 +737,7 @@ $(function() {
             // console.log(data[i].channels.other);
             num = parseInt(data.conversion[i].channels.other, 10);
             perc = num / parseInt(data.activeusers[i].channels.other, 10)
-            percentage = Math.ceil(perc * 100)/100;
+            percentage = Math.round(perc * 10000)/10000;
             num_users_array.push(percentage * 100);
         };
         console.log(num_users_array);
@@ -784,7 +787,7 @@ $(function() {
             // console.log(data[i].channels.paid);
             num = parseInt(data.conversion[i].channels.paid, 10);
             perc = num / parseInt(data.activeusers[i].channels.paid, 10)
-            percentage = Math.ceil(perc * 100)/100;
+            percentage = Math.round(perc * 10000)/10000;
             num_users_array.push(percentage * 100);
         };
         console.log(num_users_array);
@@ -840,7 +843,7 @@ $(function() {
             // console.log(data[i].channels.paid);
             num = parseInt(data.conversion[i].channels.referral, 10);
             perc = num / parseInt(data.activeusers[i].channels.referral, 10)
-            percentage = Math.ceil(perc * 100)/100;
+            percentage = Math.round(perc * 10000)/10000;
             num_users_array.push(percentage * 100);
         };
         console.log(num_users_array);
