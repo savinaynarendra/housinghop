@@ -33,7 +33,7 @@ def bar(request):
         fromdate_year = fromdate_array[2]
         # print int(fromdate_year)
         y = datetime.datetime(int(fromdate_year), int(fromdate_month), int(fromdate_day)-1)
-        t = datetime.datetime(int(todate_year), int(todate_month), int(todate_day)+1)
+        t = datetime.datetime(int(todate_year), int(todate_month), int(todate_day))
         print "dates are:"
         print y,t
         ts_y =  int(time.mktime(y.timetuple())*1000)
@@ -51,10 +51,10 @@ def bar(request):
         data['user_engagement'] = []
         # data['registered_users'] = []
         # data['live_listings'] = []
-        collection_active_users = db.overallHOP.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Active_Users', 'service': service, 'device': platform},{"_id":0, "timeStamp": 0})
-        collection_conversion = db.overallHOP.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Conversion', 'service': service, 'device': platform},{"_id":0, "timeStamp": 0})
-        collection_contact_requests = db.overallHOP.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Contact Requests', 'service': service, 'device': platform},{"_id":0, "timeStamp": 0})
-        collection_user_engagement = db.overallHOP.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'User Engagement', 'service': service, 'device': platform},{"_id":0, "timeStamp": 0})
+        collection_active_users = db.properData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Active_Users', 'service': service, 'device': platform},{"_id":0, "timeStamp": 0})
+        collection_conversion = db.properData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Conversion', 'service': service, 'device': platform},{"_id":0, "timeStamp": 0})
+        collection_contact_requests = db.properData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Contact Requests', 'service': service, 'device': platform},{"_id":0, "timeStamp": 0})
+        collection_user_engagement = db.properData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'User Engagement', 'service': service, 'device': platform},{"_id":0, "timeStamp": 0})
         # collection_registered_users = db.testData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Registered Users', 'service': service, 'device': platform},{"_id":0, "timeStamp": 0})
         # collection_live_listings = db.testData.find({'timeStamp': {'$gte': yutcoid, '$lte': tutcoid}, 'chart':'Live Listings', 'service': service, 'device': platform},{"_id":0, "timeStamp": 0})
         # print strftime("%Y%m%d", y), strftime("%Y%m%d", t)

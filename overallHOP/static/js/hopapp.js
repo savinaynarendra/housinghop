@@ -396,6 +396,61 @@ $(function() {
             }
         });
     }
+
+    var generateActiveUsersLineChartReferral = function(data) {
+        console.log("inside paid activeusers linechart");
+        var num_users_array = [];
+        num_users_array.push('Active Users');
+        var num;
+        for (var i = data.length - 1; i >= 0; i--) {
+            console.log(data[i].channels.referral);
+            num = data[i].channels.referral;
+            num_users_array.push(num);
+        };
+        console.log(num_users_array);
+        var chart = c3.generate({
+            bindto: '#chart',
+            // axis: {
+            //     y: {
+            //         max: 40000
+            //     },
+            // },
+            axis: {
+                x: {
+                    tick: {
+                        format: function(x) {
+                            var from_date = $("#dp3").val();
+                            var to_date = $("#dp5").val();
+                            var date_object_from_date = new Date(from_date);
+                            var date_object_to_date = new Date(to_date);
+                            var timeDiff = date_object_to_date - date_object_from_date;
+                            var diffDays = timeDiff / (1000 * 3600 * 24);
+                            console.log(timeDiff, diffDays);
+                            if (x == 0) {
+                                return from_date;
+                            } else if (x == diffDays) {
+                                return to_date;
+                            } else {
+                                var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
+                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                return dateString;
+                            }
+                        }
+                    }
+                },
+                y: {
+                    // max: window.maxYAxisActiveUsers
+                    min: 0
+                }
+            },
+            data: {
+                columns: [
+                    num_users_array
+                ]
+            }
+        });
+    }
+
     var generateConversionLineChart = function(data) {
         var num_users_array = [];
         num_users_array.push('Conversion');
@@ -458,7 +513,7 @@ $(function() {
         for (var i = data.conversion.length - 1; i >= 0; i--) {
             // console.log(data[i].channels.direct);
             num = parseInt(data.conversion[i].channels.direct, 10);
-            perc = num / parseInt(data.activeusers[i].num_users, 10)
+            perc = num / parseInt(data.activeusers[i].channels.direct, 10)
             percentage = Math.ceil(perc * 100)/100;
             num_users_array.push(percentage * 100);
         };
@@ -513,7 +568,7 @@ $(function() {
         for (var i = data.conversion.length - 1; i >= 0; i--) {
             // console.log(data[i].channels.affiliate);
             num = parseInt(data.conversion[i].channels.affiliate, 10);
-            perc = num / parseInt(data.activeusers[i].num_users, 10)
+            perc = num / parseInt(data.activeusers[i].channels.affiliate, 10)
             percentage = Math.ceil(perc * 100)/100;
             num_users_array.push(percentage * 100);
         };
@@ -568,7 +623,7 @@ $(function() {
         for (var i = data.conversion.length - 1; i >= 0; i--) {
             // console.log(data[i].channels.email);
             num = parseInt(data.conversion[i].channels.email, 10);
-            perc = num / parseInt(data.activeusers[i].num_users, 10)
+            perc = num / parseInt(data.activeusers[i].channels.email, 10)
             percentage = Math.ceil(perc * 100)/100;
             num_users_array.push(percentage * 100);
         };
@@ -623,7 +678,7 @@ $(function() {
         for (var i = data.conversion.length - 1; i >= 0; i--) {
             // console.log(data[i].channels.organic);
             num = parseInt(data.conversion[i].channels.organic, 10);
-            perc = num / parseInt(data.activeusers[i].num_users, 10)
+            perc = num / parseInt(data.activeusers[i].channels.organic, 10)
             percentage = Math.ceil(perc * 100)/100;
             num_users_array.push(percentage * 100);
         };
@@ -678,7 +733,7 @@ $(function() {
         for (var i = data.conversion.length - 1; i >= 0; i--) {
             // console.log(data[i].channels.other);
             num = parseInt(data.conversion[i].channels.other, 10);
-            perc = num / parseInt(data.activeusers[i].num_users, 10)
+            perc = num / parseInt(data.activeusers[i].channels.other, 10)
             percentage = Math.ceil(perc * 100)/100;
             num_users_array.push(percentage * 100);
         };
@@ -728,7 +783,7 @@ $(function() {
         for (var i = data.conversion.length - 1; i >= 0; i--) {
             // console.log(data[i].channels.paid);
             num = parseInt(data.conversion[i].channels.paid, 10);
-            perc = num / parseInt(data.activeusers[i].num_users, 10)
+            perc = num / parseInt(data.activeusers[i].channels.paid, 10)
             percentage = Math.ceil(perc * 100)/100;
             num_users_array.push(percentage * 100);
         };
@@ -775,6 +830,64 @@ $(function() {
             }
         });
     }
+
+    var generateConversionLineChartReferral = function(data) {
+        console.log("inside paid activeusers linechart");
+        var num_users_array = [];
+        num_users_array.push('Conversion');
+        var num;
+        for (var i = data.conversion.length - 1; i >= 0; i--) {
+            // console.log(data[i].channels.paid);
+            num = parseInt(data.conversion[i].channels.referral, 10);
+            perc = num / parseInt(data.activeusers[i].channels.referral, 10)
+            percentage = Math.ceil(perc * 100)/100;
+            num_users_array.push(percentage * 100);
+        };
+        console.log(num_users_array);
+        var chartConversion = c3.generate({
+            bindto: '#chartConversion',
+            // axis: {
+            //     y: {
+            //         max: 15
+            //     },
+            // },
+            axis: {
+                x: {
+                    tick: {
+                        format: function(x) {
+                            var from_date = $("#dp3").val();
+                            var to_date = $("#dp5").val();
+                            var date_object_from_date = new Date(from_date);
+                            var date_object_to_date = new Date(to_date);
+                            var timeDiff = date_object_to_date - date_object_from_date;
+                            var diffDays = timeDiff / (1000 * 3600 * 24);
+                            console.log(timeDiff, diffDays);
+                            if (x == 0) {
+                                return from_date;
+                            } else if (x == diffDays) {
+                                return to_date;
+                            } else {
+                                var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
+                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                return dateString;
+                            }
+                        }
+                    }
+                },
+                y: {
+                    min: 0,
+                    label: 'Percentage'
+                }
+            },
+            data: {
+                columns: [
+                    num_users_array
+                ]
+            }
+        });
+    }
+
+
     var generateContactRequestsLineChart = function(data) {
         var num_users_array = [];
         num_users_array.push('Contact Requests');
@@ -1142,6 +1255,61 @@ $(function() {
             }
         });
     }
+
+    var generateContactRequestsLineChartReferral = function(data) {
+        console.log("inside paid activeusers linechart");
+        var num_users_array = [];
+        num_users_array.push('Active Users');
+        var num;
+        for (var i = data.length - 1; i >= 0; i--) {
+            console.log(data[i].channels.referral);
+            data[i].channels.paid ? num = data[i].channels.referral : num = 0;
+            // num = data[i].channels.paid;
+            num_users_array.push(num);
+        };
+        console.log(num_users_array);
+        var chart = c3.generate({
+            bindto: '#chartContactRequests',
+            // axis: {
+            //     y: {
+            //         max: 5000
+            //     },
+            // },
+            axis: {
+                x: {
+                    tick: {
+                        format: function(x) {
+                            var from_date = $("#dp3").val();
+                            var to_date = $("#dp5").val();
+                            var date_object_from_date = new Date(from_date);
+                            var date_object_to_date = new Date(to_date);
+                            var timeDiff = date_object_to_date - date_object_from_date;
+                            var diffDays = timeDiff / (1000 * 3600 * 24);
+                            console.log(timeDiff, diffDays);
+                            if (x == 0) {
+                                return from_date;
+                            } else if (x == diffDays) {
+                                return to_date;
+                            } else {
+                                var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
+                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                return dateString;
+                            }
+                        }
+                    }
+                },
+                y: {
+                    min: 0
+                }
+            },
+            data: {
+                columns: [
+                    num_users_array
+                ]
+            }
+        });
+    }
+
     var generateUserEngagementBarChart = function(data) {
         var num_users_array = [];
         num_users_array.push('User Engagement');
@@ -1788,7 +1956,90 @@ $(function() {
             }
         });
     }
-    
+
+    var generateUserEngagementBarChartReferral = function(data) {
+        var num_users_array = [];
+        num_users_array.push('User Engagement');
+        var num;
+        var levels_0 = [];
+        levels_0.push('level 0');
+        var levels_1 = [];
+        levels_1.push('level 1');
+        var levels_2 = [];
+        levels_2.push('level 2');
+        var levels_3 = [];
+        levels_3.push('level 3');
+        for (var i = data.length - 1; i >= 0; i--) {
+            for (var key in data[i].level_channels.level_0) {
+                if (key == 'referral') {
+                    console.log(data[i].level_channels.level_0[key])
+                    data[i].level_channels.level_0[key] ? levels_0.push(data[i].level_channels.level_0[key]) : 0
+                }
+            };
+            for (var key in data[i].level_channels.level_1) {
+                if (key == 'referral') {
+                    console.log(data[i].level_channels.level_1[key])
+                    data[i].level_channels.level_1[key] ? levels_1.push(data[i].level_channels.level_1[key]) : 0
+                }
+            };
+            for (var key in data[i].level_channels.level_2) {
+                if (key == 'referral') {
+                    console.log(data[i].level_channels.level_2[key])
+                    data[i].level_channels.level_2[key] ? levels_2.push(data[i].level_channels.level_2[key]) : 0
+                }
+            };
+            for (var key in data[i].level_channels.level_3) {
+                if (key == 'referral') {
+                    console.log(data[i].level_channels.level_3[key])
+                    data[i].level_channels.level_3[key] ? levels_3.push(data[i].level_channels.level_3[key]) : 0
+                }
+            };
+            // num = data[i].levels.level_0
+        };
+        a = [];
+        a.push(levels_0);
+        a.push(levels_1);
+        a.push(levels_2);
+        a.push(levels_3);
+        console.log("bar chart data: ", a);
+        var chartUserEngagement = c3.generate({
+            bindto: '#chartUserEngagement',
+            data: {
+                columns: a,
+                type: 'bar'
+            },
+            axis: {
+                x: {
+                    tick: {
+                        format: function(x) {
+                            var from_date = $("#dp3").val();
+                            var to_date = $("#dp5").val();
+                            var date_object_from_date = new Date(from_date);
+                            var date_object_to_date = new Date(to_date);
+                            var timeDiff = date_object_to_date - date_object_from_date;
+                            var diffDays = timeDiff / (1000 * 3600 * 24);
+                            console.log(timeDiff, diffDays);
+                            if (x == 0) {
+                                return from_date;
+                            } else if (x == diffDays) {
+                                return to_date;
+                            } else {
+                                var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
+                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                return dateString;
+                            }
+                        }
+                    }
+                }
+            },
+            bar: {
+                width: {
+                    ratio: 0.5 // this makes bar width 50% of length between ticks
+                }
+            }
+        });
+    }
+
     var generateActiveUsersDonutChart = function(data) {
         var organicChannel = [];
         var socialChannel = [];
@@ -1797,6 +2048,7 @@ $(function() {
         var paidChannel = [];
         var affiliateChannel = [];
         var otherChannel = [];
+        var referralChannel = [];
         var organic = 0;
         var social = 0;
         var email = 0;
@@ -1804,6 +2056,7 @@ $(function() {
         var paid = 0;
         var affiliate = 0;
         var other = 0;
+        var referral = 0;
         organicChannel.push('organic');
         socialChannel.push('social');
         emailChannel.push('email');
@@ -1811,6 +2064,7 @@ $(function() {
         paidChannel.push('paid');
         affiliateChannel.push('affiliate');
         otherChannel.push('other');
+        referralChannel.push('referral');
         for (var i = data.length - 1; i >= 0; i--) {
             data[i].channels.organic ? organic = organic + data[i].channels.organic : organic = organic
             data[i].channels.social ? social = social + data[i].channels.social : social = social
@@ -1819,6 +2073,7 @@ $(function() {
             data[i].channels.paid ? paid = paid + data[i].channels.paid : paid = paid
             data[i].channels.affiliate ? affiliate = affiliate + data[i].channels.affiliate : affiliate = affiliate;
             data[i].channels.other ? other = other + data[i].channels.other : other = other;
+            data[i].channels.referral ? referral = referral + data[i].channels.referral : referral = referral;
             // social = social + data[i].channels.social;
             // email = email + data[i].channels.email;
             // direct = direct + data[i].channels.direct;
@@ -1832,6 +2087,7 @@ $(function() {
         paidChannel.push(paid);
         affiliateChannel.push(affiliate);
         otherChannel.push(other);
+        referralChannel.push(referral);
         var donutChart = c3.generate({
             bindto: '#donutChart',
             data: {
@@ -1843,6 +2099,7 @@ $(function() {
                     paidChannel,
                     affiliateChannel,
                     otherChannel,
+                    referralChannel,
                 ],
                 type: 'donut',
                 onclick: function(d, i) {
@@ -1876,6 +2133,10 @@ $(function() {
                         generateActiveUsersLineChartOrganic(data);
                         $('#channelActive').text("(Organic)");
                     }
+                    if(d.id == 'referral') {
+                        generateActiveUsersLineChartReferral(data);
+                        $('#channelActive').text("(Referral)");
+                    }
                 },
                 onmouseover: function(d, i) {
                     console.log("onmouseover", d, i);
@@ -1885,7 +2146,7 @@ $(function() {
                 }
             },
             donut: {
-                title: "Channel-wise Active Users"
+                title: "Active Users"
             }
         });
     }
@@ -1897,6 +2158,7 @@ $(function() {
         var paidChannel = [];
         var affiliateChannel = [];
         var otherChannel = [];
+        var referralChannel = [];
         var organic = 0;
         var social = 0;
         var email = 0;
@@ -1904,6 +2166,7 @@ $(function() {
         var paid = 0;
         var affiliate = 0;
         var other = 0;
+        var referral = 0;
         organicChannel.push('organic');
         socialChannel.push('social');
         emailChannel.push('email');
@@ -1911,6 +2174,7 @@ $(function() {
         paidChannel.push('paid');
         affiliateChannel.push('affiliate');
         otherChannel.push('other');
+        referralChannel.push('referral');
         for (var i = data.length - 1; i >= 0; i--) {
             data[i].channels.organic ? organic = organic + data[i].channels.organic : organic = organic
             data[i].channels.social ? social = social + data[i].channels.social : social = social
@@ -1919,6 +2183,7 @@ $(function() {
             data[i].channels.paid ? paid = paid + data[i].channels.paid : paid = paid
             data[i].channels.affiliate ? affiliate = affiliate + data[i].channels.affiliate : affiliate = affiliate;
             data[i].channels.other ? other = other + data[i].channels.other : other = other;
+            data[i].channels.referral ? referral = referral + data[i].channels.referral : referral = referral;
         };
         console.log(organic, social, email, direct, paid);
         organicChannel.push(organic);
@@ -1927,7 +2192,8 @@ $(function() {
         directChannel.push(direct);
         paidChannel.push(paid);
         affiliateChannel.push(affiliate);
-        otherChannel.push(other)
+        otherChannel.push(other);
+        referralChannel.push(referral);
         var donutChartConversion = c3.generate({
             bindto: '#donutChartConversion',
             data: {
@@ -1938,7 +2204,8 @@ $(function() {
                     directChannel,
                     paidChannel,
                     affiliateChannel,
-                    paidChannel,
+                    otherChannel,
+                    referralChannel,
                 ],
                 type: 'donut',
                 onclick: function(d, i) {
@@ -1974,6 +2241,10 @@ $(function() {
                         generateConversionLineChartOrganic(window.backendData);
                         $('#channelConversion').text("(Organic)");
                     }
+                    if(d.id == 'referral') {
+                        generateConversionLineChartReferral(window.backendData);
+                        $('#channelConversion').text("(Referral)");
+                    }
                 },
                 onmouseover: function(d, i) {
                     console.log("onmouseover", d, i);
@@ -1995,6 +2266,7 @@ $(function() {
         var paidChannel = [];
         var affiliateChannel = [];
         var otherChannel = [];
+        var referralChannel = [];
         var organic = 0;
         var social = 0;
         var email = 0;
@@ -2002,6 +2274,7 @@ $(function() {
         var paid = 0;
         var affiliate = 0;
         var other = 0;
+        var referral = 0;
         organicChannel.push('organic');
         socialChannel.push('social');
         emailChannel.push('email');
@@ -2009,6 +2282,7 @@ $(function() {
         paidChannel.push('paid');
         affiliateChannel.push('affiliate');
         otherChannel.push('other');
+        referralChannel.push('referral');
         for (var i = data.length - 1; i >= 0; i--) {
             data[i].channels.organic ? organic = organic + data[i].channels.organic : organic = organic
             data[i].channels.social ? social = social + data[i].channels.social : social = social
@@ -2017,6 +2291,7 @@ $(function() {
             data[i].channels.paid ? paid = paid + data[i].channels.paid : paid = paid
             data[i].channels.affiliate ? affiliate = affiliate + data[i].channels.affiliate : affiliate = affiliate;
             data[i].channels.other ? other = other + data[i].channels.other : other = other;
+            data[i].channels.referral ? referral = referral + data[i].channels.referral : referral = referral;
         };
         console.log(organic, social, email, direct, paid);
         organicChannel.push(organic);
@@ -2026,6 +2301,7 @@ $(function() {
         paidChannel.push(paid);
         affiliateChannel.push(affiliate);
         otherChannel.push(other);
+        referralChannel.push(referral);
         var donutChartConversion = c3.generate({
             bindto: '#donutChartContactRequests',
             data: {
@@ -2037,6 +2313,7 @@ $(function() {
                     paidChannel,
                     affiliateChannel,
                     otherChannel,
+                    referralChannel,
                 ],
                 type: 'donut',
                 onclick: function(d, i) {
@@ -2070,6 +2347,10 @@ $(function() {
                         generateContactRequestsLineChartOrganic(data);
                         $('#channelContactRequests').text("(Organic)");
                     }
+                    if (d.id == 'referral') {
+                        generateContactRequestsLineChartReferral(data);
+                        $('#channelContactRequests').text("(Referral)");
+                    }
                 },
                 onmouseover: function(d, i) {
                     console.log("onmouseover", d, i);
@@ -2091,6 +2372,7 @@ $(function() {
         var paidChannel = [];
         var affiliateChannel = [];
         var otherChannel = [];
+        var referralChannel = [];
         var organic = 0;
         var social = 0;
         var email = 0;
@@ -2098,12 +2380,15 @@ $(function() {
         var paid = 0;
         var affiliate = 0;
         var other = 0;
+        var referral = 0;
         organicChannel.push('organic');
         socialChannel.push('social');
         emailChannel.push('email');
         directChannel.push('direct');
         paidChannel.push('paid');
         affiliateChannel.push('affiliate');
+        otherChannel.push('other');
+        referralChannel.push('referral');
         for (var i = data.activeusers.length - 1; i >= 0; i--) {
             data.activeusers[i].channels.organic ? organic = organic + data.activeusers[i].channels.organic : organic = organic
             data.activeusers[i].channels.social ? social = social + data.activeusers[i].channels.social : social = social
@@ -2112,6 +2397,7 @@ $(function() {
             data.activeusers[i].channels.paid ? paid = paid + data.activeusers[i].channels.paid : paid = paid;
             data.activeusers[i].channels.affiliate ? affiliate = affiliate + data.activeusers[i].channels.affiliate : affiliate = affiliate;
             data.activeusers[i].channels.other ? other = other + data.activeusers[i].channels.other : other = other;
+            data.activeusers[i].channels.referral ? referral = referral + data.activeusers[i].channels.referral : referral = referral;
         };
         console.log(organic, social, email, direct, paid);
         organicChannel.push(organic);
@@ -2120,7 +2406,8 @@ $(function() {
         directChannel.push(direct);
         paidChannel.push(paid);
         affiliateChannel.push(affiliate);
-        otherChannel.push(other)
+        otherChannel.push(other);
+        referralChannel.push(referral);
         var donutChartConversion = c3.generate({
             bindto: '#donutChartUserEngagement',
             data: {
@@ -2132,6 +2419,7 @@ $(function() {
                     paidChannel,
                     affiliateChannel,
                     otherChannel,
+                    referralChannel,
                 ],
                 type: 'donut',
                 onclick: function(d, i) {
@@ -2164,6 +2452,10 @@ $(function() {
                     if (d.id == 'organic') {
                         generateUserEngagementBarChartOrganic(data.user_engagement);
                         $('#channelUserEngagement').text("(Organic)");
+                    }
+                    if (d.id == 'referral') {
+                        generateUserEngagementBarChartReferral(data.user_engagement);
+                        $('#channelUserEngagement').text("(Referral)");
                     }
                 },
                 onmouseover: function(d, i) {
@@ -2234,7 +2526,14 @@ $(function() {
         window.service = id;
         console.log(id);
     })
-    $('#dp3').datepicker();
+
+    var start = new Date('2015, 02, 03');
+    var today = new Date();
+
+    $('#dp3').datepicker({
+        startDate: start,
+        endDate: new Date()
+    });
     $('#dp5').datepicker();
     $('#show-query').on('click', function() {
         var fromDate = $('#dp3').val();
