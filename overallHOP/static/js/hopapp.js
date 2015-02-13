@@ -1,7 +1,7 @@
 $(function() {
     
     $('#questionMark').tooltip();
-    
+    $('#ocrf-conversion').tooltip();
     $('#submit-request').click(function(event) {
         console.log("inside submit request");
         event.preventDefault();
