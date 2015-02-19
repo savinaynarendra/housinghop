@@ -1,6 +1,8 @@
 from django.shortcuts import render_to_response
 from django.core.mail import send_mail
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from django.http import HttpResponse
@@ -9,8 +11,21 @@ import datetime
 import time
 import json
 
+def loginHandler(request):
+    token = request.COOKIES.get('auth_token')
+    print token
+    host = "https://test.pa.housing.com/app"
+    if token is not None:
+        return HttpResponseRedirect("/")
+    else:
+        return HttpResponseRedirect("https://accounts.housing.com/?redirect_to="+host)
+    # return render_to_response("app/login.html", {"returnedData" : "1"})
+
 @csrf_exempt
+@loginHandler
 def bar(request):
+    # token = request.COOKIES.get('auth_token')
+    # print token
     print request
     client = MongoClient()
     # collection = []
