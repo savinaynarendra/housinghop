@@ -62,7 +62,8 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                console.log(date);
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -76,13 +77,6 @@ $(function() {
                 columns: [
                     num_users_array
                 ]
-            },
-            tooltip: {
-                format: {
-                    title: function(d) {
-                        return 'Data ' + d;
-                    }
-                }
             }
         });
     }
@@ -116,7 +110,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = date.getDate() + '/' + (date.getMonth() + 1) +'';
                                 return dateString;
                             }
                         }
@@ -169,7 +163,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -222,7 +216,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -275,7 +269,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -328,7 +322,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -381,7 +375,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -435,7 +429,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -490,7 +484,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -545,7 +539,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -600,7 +594,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -655,7 +649,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -710,7 +704,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -760,7 +754,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -815,7 +809,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -871,7 +865,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -924,7 +918,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -976,7 +970,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -1029,7 +1023,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -1082,7 +1076,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -1135,7 +1129,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -1188,7 +1182,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -1241,7 +1235,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -1295,7 +1289,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -1371,7 +1365,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -1453,7 +1447,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -1535,7 +1529,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -1617,7 +1611,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -1699,7 +1693,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -1781,7 +1775,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -1863,7 +1857,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -1945,7 +1939,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -2028,7 +2022,7 @@ $(function() {
                                 return to_date;
                             } else {
                                 var date = new Date(new Date(from_date).getTime() + x * 1000 * 3600 * 24);
-                                var dateString = date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+                                var dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
                                 return dateString;
                             }
                         }
@@ -2531,12 +2525,22 @@ $(function() {
     })
 
     var start = new Date(2015, 02, 03);
-    var today = new Date();
+    var now = new Date();
+    var yesterday = new Date();
+    yesterday.setDate(now.getDate() - 1);
+    console.log(yesterday);
 
     $('#dp3').datepicker({
-        minDate: start
+        // minDate: start
+        onRender: function(date) {
+            return date.valueOf() >= yesterday.valueOf() ? 'disabled' : '';
+        }
     });
-    $('#dp5').datepicker();
+    $('#dp5').datepicker({
+        onRender: function(date) {
+            return date.valueOf() >= yesterday.valueOf() ? 'disabled' : '';
+        }
+    });
     $('#show-query').on('click', function() {
         var fromDate = $('#dp3').val();
         var toDate = $('#dp5').val();
